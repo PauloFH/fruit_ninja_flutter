@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
 import 'models/fruit.dart';
@@ -15,6 +16,8 @@ class CanvasArea extends StatefulWidget {
 }
 
 class _CanvasAreaState<CanvasArea> extends State {
+  final AudioPlayer audioPlayer = AudioPlayer();
+  AudioCache audioCache = AudioCache();
   int _score = 0;
   int _errors = 0;
   double screenWidth = 0.0;
@@ -22,6 +25,7 @@ class _CanvasAreaState<CanvasArea> extends State {
   TouchSlice? _touchSlice;
   final List<Fruit> _fruits = <Fruit>[];
   final List<FruitPart> _fruitParts = <FruitPart>[];
+
 
   @override
   void initState() {
@@ -266,7 +270,6 @@ class _CanvasAreaState<CanvasArea> extends State {
     }
 
     // Verifica o critério de parada
-
   }
 
   void _turnFruitIntoParts(Fruit hit) {

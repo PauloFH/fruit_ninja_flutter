@@ -29,7 +29,7 @@ class StartScreen extends StatelessWidget {
                 const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
-                    // Navegar para a tela principal do jogo
+                   
                     Navigator.pushReplacementNamed(context, '/game');
                   },
                   child: Text('Start'),
