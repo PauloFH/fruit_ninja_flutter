@@ -53,15 +53,14 @@ class _CanvasAreaState<CanvasArea> extends State {
     final double randomRotation = Random().nextDouble() / 3 - 0.16;
 
     const ImageProvider fruitImage = AssetImage(
-        'assets/melon_uncut.png'); // Substitua pela imagem que você está usando
-
+        'assets/melon_uncut.png'); 
     await precacheImage(fruitImage, context);
 
     final fruit = Fruit(
       position: Offset(
           randomX,
           startY -
-              180), // Ajusta a posição inicial para que a fruta fique dentro da tela
+              180),
       width: 100,
       height: 180,
       additionalForce:
@@ -130,8 +129,8 @@ class _CanvasAreaState<CanvasArea> extends State {
           'Score: $_score',
           style: TextStyle(
             fontSize: 24,
-            fontWeight: FontWeight.bold, // Negrito (bold)
-            color: Colors.yellow, // Amarelo
+            fontWeight: FontWeight.bold, 
+            color: Colors.yellow, 
           ),
         ),
       ),
@@ -265,11 +264,11 @@ class _CanvasAreaState<CanvasArea> extends State {
     }
 
     if (!hitFruit) {
-      _errors++; // O jogador errou a fruta
+      _errors++; 
       print('Erros: $_errors');
     }
 
-    // Verifica o critério de parada
+   
   }
 
   void _turnFruitIntoParts(Fruit hit) {

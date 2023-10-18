@@ -6,14 +6,14 @@ class StartScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // Imagem de fundo
+
           Image.asset(
             'assets/bg.jpeg',
             fit: BoxFit.cover,
             width: double.infinity,
             height: double.infinity,
           ),
-          // Conteúdo da tela de início
+
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

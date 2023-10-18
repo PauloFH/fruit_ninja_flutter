@@ -5,8 +5,7 @@ import 'package:fruit_ninja_dnv/start.dart';
 
 void main() {
   AudioCache audioCache = AudioCache();
-  audioCache.load('music.mp3'); // Carrega a música
-  runApp(MyApp());
+  audioCache.load('music.mp3'); 
   audioCache.play('music.mp3');
 }
 
@@ -16,9 +15,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/start',
       routes: {
-        '/start': (context) => StartScreen(), // Rota para a tela de início
+        '/start': (context) => StartScreen(), 
         '/game': (context) =>
-            InitialScreen(), // Rota para a tela principal do jogo
+            InitialScreen(), 
       },
     );
   }
