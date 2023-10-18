@@ -15,7 +15,7 @@ abstract class GravitationalObject {
   final double rotation;
 
 void applyGravity() {
-  gravitySpeed += _gravity; // Adiciona a gravidade (positiva) para simular queda
+  gravitySpeed += _gravity; 
   position = Offset(
     position.dx + additionalForce.dx,
     position.dy + gravitySpeed + additionalForce.dy,

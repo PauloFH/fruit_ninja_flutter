@@ -15,7 +15,7 @@ class Fruit extends GravitationalObject {
   required this.imageProvider,
   }) : super(
           position: position,
-          gravitySpeed: Random().nextDouble() * 2 + 1, // Gravidade aleatória entre 1 e 3
+          gravitySpeed: Random().nextDouble() * 2 + 1,
           additionalForce: additionalForce,
           rotation: rotation,
         );

@@ -16,21 +16,20 @@ class CanvasArea extends StatefulWidget {
 }
 
 class _CanvasAreaState<CanvasArea> extends State {
-  final AudioPlayer audioPlayer = AudioPlayer();
-  AudioCache audioCache = AudioCache();
+  AudioCache audio = AudioCache();
+
   int _score = 0;
   int _errors = 0;
+  int temp = 0;
   double screenWidth = 0.0;
   double screenHeight = 0.0;
   TouchSlice? _touchSlice;
   final List<Fruit> _fruits = <Fruit>[];
   final List<FruitPart> _fruitParts = <FruitPart>[];
 
-
   @override
   void initState() {
     super.initState();
-
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final size = MediaQuery.of(context).size;
       setState(() {
@@ -41,6 +40,7 @@ class _CanvasAreaState<CanvasArea> extends State {
       _spawnRandomFruit(screenWidth, screenHeight);
       _tick();
     });
+    audio.load('shout.mp3');
   }
 
   void _spawnRandomFruit(double screenWidth, double screenHeight) async {
@@ -52,15 +52,11 @@ class _CanvasAreaState<CanvasArea> extends State {
                 180); // A fruta começa do meio da tela para cima
     final double randomRotation = Random().nextDouble() / 3 - 0.16;
 
-    const ImageProvider fruitImage = AssetImage(
-        'assets/melon_uncut.png'); 
+    const ImageProvider fruitImage = AssetImage('assets/melon_uncut.png');
     await precacheImage(fruitImage, context);
 
     final fruit = Fruit(
-      position: Offset(
-          randomX,
-          startY -
-              180),
+      position: Offset(randomX, startY - 180),
       width: 100,
       height: 180,
       additionalForce:
@@ -129,8 +125,8 @@ class _CanvasAreaState<CanvasArea> extends State {
           'Score: $_score',
           style: TextStyle(
             fontSize: 24,
-            fontWeight: FontWeight.bold, 
-            color: Colors.yellow, 
+            fontWeight: FontWeight.bold,
+            color: Colors.yellow,
           ),
         ),
       ),
@@ -250,12 +246,17 @@ class _CanvasAreaState<CanvasArea> extends State {
       if (fruit.position.dx >= 0 &&
           fruit.position.dx <= screenWidth &&
           fruit.position.dy >= 0) {
-        // Verifique a colisão apenas se a fruta estiver dentro da tela
+    
         for (Offset point in _touchSlice!.pointsList) {
           if (fruit.isPointInside(point)) {
             _fruits.remove(fruit);
             _turnFruitIntoParts(fruit);
             _score += 10;
+            temp + 1;
+            if (temp > 10) {
+              audio.play('shout.mp3');
+              temp = 0;
+            }
             hitFruit = true; // O jogador acertou a fruta
             break;
           }
@@ -264,11 +265,9 @@ class _CanvasAreaState<CanvasArea> extends State {
     }
 
     if (!hitFruit) {
-      _errors++; 
+      _errors++;
       print('Erros: $_errors');
     }
-
-   
   }
 
   void _turnFruitIntoParts(Fruit hit) {
